@@ -15,6 +15,7 @@ const View = dynamic(() => import("@/components/canvas/View"), {
 
 import WelcomeMessage from "@/components/dom/WelcomeMessage";
 import Plane from "@/components/canvas/Plane/Plane";
+import {Level} from "@/components/canvas/Level/Level";
 
 export default function Page() {
     return (
@@ -31,10 +32,10 @@ export default function Page() {
                         width: "100%",
                     }}
                 >
-                    <ambientLight />
-                    <pointLight position={[10, 10, 10]} />
-                    <Box color={"#c1b61f"} hoverColor={"#2d52ad"} />
-                    <Plane />
+                    
+                    {/* <Box color={"#c1b61f"} hoverColor={"#2d52ad"} /> */}
+                    {/* <Plane /> */}
+                    <Level />
                 </View>
             </div>
         </>
