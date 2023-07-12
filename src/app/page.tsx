@@ -15,7 +15,8 @@ const View = dynamic(() => import("@/components/canvas/View"), {
 
 import WelcomeMessage from "@/components/dom/WelcomeMessage";
 import Plane from "@/components/canvas/Plane/Plane";
-import {Level} from "@/components/canvas/Level/Level";
+import {BlockLimbo, Level} from "@/components/canvas/Level/Level";
+import Player from "@/components/canvas/Player/Player";
 
 export default function Page() {
     return (
@@ -36,6 +37,7 @@ export default function Page() {
                     {/* <Box color={"#c1b61f"} hoverColor={"#2d52ad"} /> */}
                     {/* <Plane /> */}
                     <Level />
+                    <Player />
                 </View>
             </div>
         </>
