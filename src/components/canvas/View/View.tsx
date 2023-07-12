@@ -6,7 +6,7 @@ import { OrbitControls, View as ViewImpl } from "@react-three/drei";
 
 import { Three } from "@/helpers/components/Three";
 import { Physics } from "@react-three/rapier";
-import Lights from "../LIghts/Lights";
+import Lights from "../Lights/Lights";
 type ViewProps = {
     children: any;
     orbit?: any;
