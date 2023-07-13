@@ -1,3 +1,4 @@
+"use client"
 import { Metadata } from "next"
 import Image from "next/image"
 import { PlusCircledIcon } from "@radix-ui/react-icons"
@@ -12,71 +13,53 @@ import {
   TabsTrigger,
 } from "@/components/ui/tabs"
 
-import { AlbumArtwork } from "@/components/album-artwork"
+import { World } from "@/components/world-showcase"
 import { Menu } from "@/components/menu"
 import { PodcastEmptyPlaceholder } from "@/components/podcast-empty-placeholder"
 import { Sidebar } from "@/components/sidebar"
-import { listenNowAlbums, madeForYouAlbums } from "@/data/albums"
-import { playlists } from "@/data/playlists"
+import { madeForYouWorlds, worlds } from "@/data/worlds"
+import { useRouter } from "next/navigation"
 
-export const metadata: Metadata = {
-  title: "Music App",
-  description: "Example music app using the components.",
+export default function Galaxy() {
+  const router = useRouter()
+
+const handleClick = () => {
+  router.push('https://github.com/Montekkundan/infinite-codex')
 }
-
-export default function MusicPage() {
   return (
     <>
-      <div className="md:hidden">
-        <Image
-          src="/examples/music-light.png"
-          width={1280}
-          height={1114}
-          alt="Music"
-          className="block dark:hidden"
-        />
-        <Image
-          src="/examples/music-dark.png"
-          width={1280}
-          height={1114}
-          alt="Music"
-          className="hidden dark:block"
-        />
-      </div>
-      <div className="hidden md:block">
+      <div className=" md:block">
         <Menu />
         <div className="border-t">
           <div className="bg-background">
             <div className="grid lg:grid-cols-5">
-              <Sidebar playlists={playlists} className="hidden lg:block" />
+              <Sidebar worlds={worlds} className="hidden lg:block" />
               <div className="col-span-3 lg:col-span-4 lg:border-l">
                 <div className="h-full px-4 py-6 lg:px-8">
-                  <Tabs defaultValue="music" className="h-full space-y-6">
+                  <Tabs defaultValue="world" className="h-full space-y-6">
                     <div className="space-between flex items-center">
                       <TabsList>
-                        <TabsTrigger value="music" className="relative">
-                          Music
+                        <TabsTrigger value="world" className="relative">
+                          Worlds
                         </TabsTrigger>
-                        <TabsTrigger value="podcasts">Podcasts</TabsTrigger>
-                        <TabsTrigger value="live" disabled>
-                          Live
-                        </TabsTrigger>
+                        <TabsTrigger value="podcasts" disabled>Discussion</TabsTrigger>
+              
                       </TabsList>
                       <div className="ml-auto mr-4">
-                        <Button>
+                        <Button onClick={handleClick}>
                           <PlusCircledIcon className="mr-2 h-4 w-4" />
-                          Add music
+                          Contribute
                         </Button>
                       </div>
                     </div>
                     <TabsContent
-                      value="music"
+                      value="world"
                       className="border-none p-0 outline-none"
                     >
                       <div className="flex items-center justify-between">
                         <div className="space-y-1">
                           <h2 className="text-2xl font-semibold tracking-tight">
-                            Listen Now
+                            Play Now
                           </h2>
                           <p className="text-sm text-muted-foreground">
                             Top picks for you. Updated daily.
@@ -87,10 +70,10 @@ export default function MusicPage() {
                       <div className="relative">
                         <ScrollArea>
                           <div className="flex space-x-4 pb-4">
-                            {listenNowAlbums.map((album) => (
-                              <AlbumArtwork
-                                key={album.name}
-                                album={album}
+                            {worlds.map((world) => (
+                              <World
+                                key={world.name}
+                                world={world}
                                 className="w-[250px]"
                                 aspectRatio="portrait"
                                 width={250}
@@ -106,17 +89,17 @@ export default function MusicPage() {
                           Made for You
                         </h2>
                         <p className="text-sm text-muted-foreground">
-                          Your personal playlists. Updated daily.
+                          Your personal worlds. Updated daily.
                         </p>
                       </div>
                       <Separator className="my-4" />
                       <div className="relative">
                         <ScrollArea>
                           <div className="flex space-x-4 pb-4">
-                            {madeForYouAlbums.map((album) => (
-                              <AlbumArtwork
-                                key={album.name}
-                                album={album}
+                            {madeForYouWorlds.map((world) => (
+                              <World
+                                key={world.name}
+                                world={world}
                                 className="w-[150px]"
                                 aspectRatio="square"
                                 width={150}

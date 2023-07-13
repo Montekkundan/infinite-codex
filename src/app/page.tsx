@@ -40,7 +40,7 @@ export default function Page() {
                     <Player useWorld={useWorld}/>
                     
                 </View>
-                <TeleportMessage useWorld={useWorld} url="learning-git"  />
+                <TeleportMessage useWorld={useWorld} url="worlds/branch-bay"  />
             </div>
         </>
     );
