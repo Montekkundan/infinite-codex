@@ -17,6 +17,7 @@ import Player from "@/components/canvas/Player/Player";
 import { World } from "@/components/canvas/World1";
 import useWorld from "@/components/canvas/World1/useWorld";
 import TeleportMessage from "@/components/dom/TeleportMessage";
+import UI from "@/components/dom/UI";
 
 export default function Page() {
     const block = useWorld((state: any) => state.block);
@@ -37,6 +38,7 @@ export default function Page() {
                     <World  count={block}/>
                     <Player useWorld={useWorld}  playercamera={'thirdperson'}  />
                 </View>
+                <UI />
                 <TeleportMessage useWorld={useWorld}  />
             </div>
         </>

@@ -17,6 +17,7 @@ import Player from "@/components/canvas/Player/Player";
 import { World } from "@/components/canvas/HomeWorld";
 import useWorld from "@/components/canvas/HomeWorld/useWorld";
 import TeleportMessage from "@/components/dom/TeleportMessage";
+import UI from "@/components/dom/UI";
 
 export default function Page() {
     const block = useWorld((state: any) => state.block);
@@ -40,6 +41,7 @@ export default function Page() {
                     <Player useWorld={useWorld}/>
                     
                 </View>
+                <UI />
                 <TeleportMessage useWorld={useWorld} url="worlds/branch-bay"  />
             </div>
         </>
