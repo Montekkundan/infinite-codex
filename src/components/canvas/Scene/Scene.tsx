@@ -4,6 +4,7 @@ import { Canvas } from "@react-three/fiber";
 import { KeyboardControls, KeyboardControlsEntry, Preload } from "@react-three/drei";
 import { webgl } from "@/helpers/global";
 import { useMemo } from "react";
+import TeleportMessage from "@/components/dom/TeleportMessage/TeleportMessage";
 
 enum Controls {
     forward = 'forward',
@@ -29,6 +30,7 @@ export default function Scene({ ...props }) {
             <webgl.Out />
             <Preload all />
         </Canvas>
+        {/* <TeleportMessage/> */}
         </KeyboardControls>
     );
 }

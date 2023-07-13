@@ -1,7 +1,7 @@
-const title = "Next Three Fiber Minimal Starter";
+const title = "Infinte-Codex";
 const url = " ";
 const description =
-    "Easy way to get up and creating with react three fiber in nextjs";
+    "Learning with playing a game";
 const author = "Author";
 const twitter = "@aliiscript";
 
@@ -31,7 +31,7 @@ export default function Head() {
             <meta property="og:site_name" content={title} />
             <meta property="og:description" content={description} />
 
-            <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+            {/* <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
             <link
                 rel="apple-touch-icon"
                 sizes="16x16"
@@ -59,7 +59,7 @@ export default function Head() {
                 name="viewport"
                 content="width=device-width, minimum-scale=1, initial-scale=1.0"
             />
-            <meta name="theme-color" content="#000" />
+            <meta name="theme-color" content="#000" /> */}
             <link rel="shortcut icon" href="/icons/apple-touch-icon.png" />
 
             <meta name="twitter:card" content="summary" />

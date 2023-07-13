@@ -13,16 +13,17 @@ const View = dynamic(() => import("@/components/canvas/View"), {
     ),
 });
 
-import WelcomeMessage from "@/components/dom/WelcomeMessage";
-import Plane from "@/components/canvas/Plane/Plane";
-import {BlockLimbo, Level} from "@/components/canvas/Level/Level";
 import Player from "@/components/canvas/Player/Player";
+import { World } from "@/components/canvas/HomeWorld";
+import useWorld from "@/components/canvas/HomeWorld/useWorld";
+import TeleportMessage from "@/components/dom/TeleportMessage";
 
 export default function Page() {
+    const block = useWorld((state: any) => state.block);
     return (
         <>
+
             <div>
-                {/* <WelcomeMessage /> */}
                 <View
                     orbit={true}
                     style={{
@@ -33,12 +34,13 @@ export default function Page() {
                         width: "100%",
                     }}
                 >
+
+                    <World  count={block}/>
+                   
+                    <Player useWorld={useWorld}/>
                     
-                    {/* <Box color={"#c1b61f"} hoverColor={"#2d52ad"} /> */}
-                    {/* <Plane /> */}
-                    <Level />
-                    <Player camera={'thirdperson'}/>
                 </View>
+                <TeleportMessage useWorld={useWorld} url="learning-git"  />
             </div>
         </>
     );
