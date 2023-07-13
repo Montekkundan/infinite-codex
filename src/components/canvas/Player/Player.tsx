@@ -1,7 +1,7 @@
 import { Icosahedron, useKeyboardControls } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { RapierRigidBody, RigidBody, useRapier } from "@react-three/rapier";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { MeshStandardMaterial, Vector3 } from "three";
 
 type CameraView = 'thirdperson'; // Add other view types here
@@ -22,6 +22,8 @@ export default function Player({ camera }: PlayerProps) {
     const {rapier, world} = useRapier();
     const rigidBody = useRef<RapierRigidBody>(null);
     const [sub, get] = useKeyboardControls<Controls>()
+    const [smoothedCameraPosition] = useState(() => new Vector3());
+    const [smoothedCameraTarget] = useState(() => new Vector3());
 
 
     const jump = () => {
@@ -60,7 +62,7 @@ export default function Player({ camera }: PlayerProps) {
         const torque = {x: 0, y: 0, z: 0};
 
         const impulseStrength = 0.6 * delta;
-        const torqueStrength = 0.2 * delta;
+        const torqueStrength = 0.6 * delta;
 
         if(forward) {
             impulse.z -= impulseStrength;
@@ -88,24 +90,25 @@ export default function Player({ camera }: PlayerProps) {
         rigidBody.current.applyImpulse(impulse, true);
         rigidBody.current.addTorque(torque, true);
         if (camera === 'thirdperson'){
-        const bodyPosition = rigidBody.current.translation()
+             const bodyPosition = rigidBody.current.translation()
+            const cameraPosition = new Vector3(bodyPosition.x, bodyPosition.y, bodyPosition.z);
+            cameraPosition.z += 2.25;
+            cameraPosition.y += 0.65;
 
-        
-    const cameraPosition = new Vector3(bodyPosition.x, bodyPosition.y, bodyPosition.z);
-    cameraPosition.z += 2.25;
-    cameraPosition.y += 0.65;
+            const cameraTarget = new Vector3(bodyPosition.x, bodyPosition.y, bodyPosition.z);
+            cameraTarget.y += 0.25;
 
-    const cameraTarget = new Vector3(bodyPosition.x, bodyPosition.y, bodyPosition.z);
-    cameraTarget.y += 0.25;
+            smoothedCameraPosition.lerp(cameraPosition, 0.1);
+            smoothedCameraTarget.lerp(cameraTarget, 0.1);
 
-    state.camera.position.copy(cameraPosition);
-    state.camera.lookAt(cameraTarget);
-        }
+            state.camera.position.copy(cameraPosition);
+            state.camera.lookAt(cameraTarget);
+                }
         }
 
     });
     return<>
-    <RigidBody ref={rigidBody} colliders="ball" restitution={0.2} friction={1} linearDamping={0.5} angularDamping={0.5}>
+    <RigidBody ref={rigidBody} colliders="ball" restitution={0.2} friction={1} linearDamping={ 0.5 } angularDamping={0.5} position={ [ 0, 1, 0 ]}>
     <Icosahedron castShadow  args={[0.3, 1]} material={playerMaterial} />
     </RigidBody>
     </>

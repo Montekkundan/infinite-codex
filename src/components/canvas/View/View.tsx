@@ -7,6 +7,7 @@ import { OrbitControls, View as ViewImpl } from "@react-three/drei";
 import { Three } from "@/helpers/components/Three";
 import { Physics } from "@react-three/rapier";
 import Lights from "../Lights/Lights";
+import Camera from "../Camera/Camera";
 type ViewProps = {
     children: any;
     orbit?: any;
@@ -25,13 +26,13 @@ const View = forwardRef(({ children, orbit, ...props }: ViewProps, ref) => {
         <>
             <div ref={tracking} {...props} />
             <Three>
-         
+                <Camera />
                 <ViewImpl track={tracking}>
                     <Physics debug>
                         <Lights/>
                     {children}
                     </Physics>
-                    {orbit && <OrbitControls />}
+                    {orbit && <OrbitControls/>}
                     
                 </ViewImpl>
              
