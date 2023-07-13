@@ -37,7 +37,7 @@ export default function Page() {
                     {/* <Box color={"#c1b61f"} hoverColor={"#2d52ad"} /> */}
                     {/* <Plane /> */}
                     <Level />
-                    <Player />
+                    <Player camera={'thirdperson'}/>
                 </View>
             </div>
         </>
