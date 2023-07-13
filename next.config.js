@@ -13,6 +13,9 @@ const nextConfig = {
         // ssr and displayName are configured by default
         styledComponents: true,
     },
+    images: {
+        domains: ['images.unsplash.com'],
+    },
     webpack(config, { isServer }) {
         // audio support
         config.module.rules.push({
