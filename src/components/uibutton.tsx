@@ -33,14 +33,14 @@ import Link from "next/link";
           <DropdownMenuLabel>My Account</DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuGroup>
-          <Link href="/">
+          <a href="/" onClick={() => window.location.reload()}>
             <DropdownMenuItem className="cursor-pointer">
               <Home className="mr-2 h-4 w-4" />
               <span>Home</span>
               
               <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
             </DropdownMenuItem>
-            </Link>
+            </a>
             <Link href="/galaxy">
             <DropdownMenuItem className="cursor-pointer">
               <Globe className="mr-2 h-4 w-4" />
