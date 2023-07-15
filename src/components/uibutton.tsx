@@ -1,6 +1,7 @@
 import {
  
     Globe,
+    Home
 
   } from "lucide-react"
   
@@ -32,7 +33,15 @@ import Link from "next/link";
           <DropdownMenuLabel>My Account</DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuGroup>
-          <Link href="/galaxy">
+          <Link href="/">
+            <DropdownMenuItem className="cursor-pointer">
+              <Home className="mr-2 h-4 w-4" />
+              <span>Home</span>
+              
+              <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
+            </DropdownMenuItem>
+            </Link>
+            <Link href="/galaxy">
             <DropdownMenuItem className="cursor-pointer">
               <Globe className="mr-2 h-4 w-4" />
               <span>Galaxy</span>
