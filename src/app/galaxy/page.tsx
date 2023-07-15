@@ -1,7 +1,8 @@
 "use client"
 import { Metadata } from "next"
 import Image from "next/image"
-import { PlusCircledIcon } from "@radix-ui/react-icons"
+import { PlusCircledIcon, HomeIcon } from "@radix-ui/react-icons"
+
 
 import { Button } from "@/components/ui/button"
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
@@ -26,6 +27,10 @@ export default function Galaxy() {
 const handleClick = () => {
   router.push('https://github.com/Montekkundan/infinite-codex')
 }
+
+const handlehome = () => {
+  router.push('/')
+}
   return (
     <>
       <div className=" md:block">
@@ -45,10 +50,14 @@ const handleClick = () => {
                         <TabsTrigger value="podcasts" disabled>Discussion</TabsTrigger>
               
                       </TabsList>
-                      <div className="ml-auto mr-4">
+                      <div className="ml-auto mr-4 space-x-5">
                         <Button onClick={handleClick}>
                           <PlusCircledIcon className="mr-2 h-4 w-4" />
                           Contribute
+                        </Button>
+                        <Button onClick={handlehome}>
+                        <HomeIcon className="mr-2 h-4 w-4" />
+                          Home
                         </Button>
                       </div>
                     </div>

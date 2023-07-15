@@ -14,17 +14,18 @@ const View = dynamic(() => import("@/components/canvas/View"), {
 });
 
 import Player from "@/components/canvas/Player/Player";
-import { World } from "@/components/canvas/World1";
-import useWorld from "@/components/canvas/World1/useWorld";
+import { World } from "@/components/canvas/Worlds/Branchbay";
+import useWorld from "@/components/canvas/Worlds/Branchbay/useWorld";
 import TeleportMessage from "@/components/dom/TeleportMessage";
 import UI from "@/components/dom/UI";
+import NPC from "@/components/canvas/NPC/NPC";
 
 export default function Page() {
     const block = useWorld((state: any) => state.block);
     return (
         <>
+
             <div>
-                {/* <WelcomeMessage /> */}
                 <View
                     orbit={true}
                     style={{
@@ -35,11 +36,15 @@ export default function Page() {
                         width: "100%",
                     }}
                 >
+
                     <World  count={block}/>
-                    <Player useWorld={useWorld}  playercamera={'thirdperson'}  />
+                   
+                    <Player useWorld={useWorld} playercamera="top"/>
+                    <NPC />
+                    
                 </View>
                 <UI />
-                <TeleportMessage useWorld={useWorld}  />
+                <TeleportMessage useWorld={useWorld} url="worlds/branch-bay"  />
             </div>
         </>
     );
