@@ -5,7 +5,7 @@ export default function Camera() {
     const { camera, set } = useThree();
 
     useEffect(() => {
-      camera.position.set(1, 1, 2);
+      camera.position.set(1, 1, 2.5);
       set({ camera });
     }, [camera, set]);
     return null;
