@@ -4,7 +4,7 @@ import { RapierRigidBody, RigidBody, useRapier } from "@react-three/rapier";
 import { useEffect, useRef, useState } from "react";
 import { MeshStandardMaterial, Vector3 } from "three";
 
-type CameraView = 'thirdperson' | 'lookAt'; // Add other view types here
+type CameraView = 'thirdperson' | 'top'; // Add other view types here
 
 type PlayerProps = {
     playercamera?: CameraView;
@@ -122,12 +122,14 @@ export default function Player({ playercamera, useWorld }: PlayerProps) {
         rigidBody.current.applyTorqueImpulse(torque, true);
         const bodyPosition = rigidBody.current.translation()
         const cameraPosition = new Vector3(bodyPosition.x, bodyPosition.y, bodyPosition.z);
+        const cameraPosition2 = new Vector3(bodyPosition.x, bodyPosition.y, bodyPosition.z);
+        const cameraTarget = new Vector3(bodyPosition.x, bodyPosition.y, bodyPosition.z);
         if (playercamera === 'thirdperson'){
              
             cameraPosition.z += 2.25;
             cameraPosition.y += 0.65;
 
-            const cameraTarget = new Vector3(bodyPosition.x, bodyPosition.y, bodyPosition.z);
+            
             cameraTarget.y += 0.25;
 
             smoothedCameraPosition.lerp(cameraPosition, 5 * delta);
@@ -136,11 +138,13 @@ export default function Player({ playercamera, useWorld }: PlayerProps) {
             state.camera.position.copy(cameraPosition);
             state.camera.lookAt(cameraTarget);
                 }
-        if (playercamera === 'lookAt') {
-        const bodyPosition = rigidBody.current.translation()
-        const cameraPosition = new Vector3(bodyPosition.x, bodyPosition.y + 2, bodyPosition.z + 5); // Offset for better view
-        state.camera.position.lerp(cameraPosition, 5 * delta);
-        state.camera.lookAt(new Vector3(bodyPosition.x, bodyPosition.y, bodyPosition.z));
+        if (playercamera === 'top') {
+            cameraPosition2.z += 2.25;
+            cameraPosition2.y += 2;
+            cameraPosition2.x += 0.65;
+            
+            state.camera.position.copy(cameraPosition2);
+            state.camera.lookAt(cameraTarget);
     }
 
             if (bodyPosition.z < - (blockCount * 4 + 2))
